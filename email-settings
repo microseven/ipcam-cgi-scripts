@@ -1,0 +1,75 @@
+// enable: Switch 0 - off 1 - on
+// email_server：server address
+// email_server_port：server port
+// email_crypto: server encryption method
+// email_username: email login username
+// email_passwd: email SMTP service password
+// email_sender: sender email address
+// email_sender_name：sender name
+// email_recipient0: email recipient 1
+// email_recipient1: email recipient 2
+// email_recipient2: email recipient 3
+// email_recipient3: email recipient 4
+// email_recipient4: email recipient 5
+// email_subject: email subject 
+// email_content: email content
+// attach_pic: whether to send attachment 1 - on
+
+// email-settings
+// 1. (get) GET
+// 2. (set) POST
+// 3. (test) GET
+// 4. (default) GET
+
+// email-settings
+// 1. (get) GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=alarm_out&cmd=get
+
+// return data example:
+{"enable":1,"attach_pic":1,"email_sender":"ipcam-cgi-scripts@microseven.com","email_sender_name":"seth","email_username":"ipcam-cgi-scripts@microseven.com","email_passwd":"ipcam-cgi-scripts-pwd","email_recipient0":"ipcam-cgi-scripts@microseven.com","email_recipient1":"","email_recipient2":"","email_recipient3":"","email_recipient4":"","email_server":"smtp.microseven.com","email_server_port":465,"email_crypto":"ssl","alarm_dev_name":"","email_subject":"recv an email","email_content":"you recv an email"}
+
+// 2. (set) POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{
+ "mod": "alarm_out",
+ "cmd": "set",
+ "param": {
+  "enable": 1,
+  "email_server": "smtp.microseven.com",
+  "email_server_port": 465,
+  "email_crypto": "ssl",
+  "attach_pic": 1,
+  "email_username": "ipcam-cgi-scripts@microseven.com",
+  "email_passwd": "ipcam-cgi-scripts-pwd",
+  "email_sender": "ipcam-cgi-scripts@microseven.com",
+  "email_sender_name": "seth",
+  "email_recipient0": "ipcam-cgi-scripts@microseven.com",
+  "email_recipient1": "",
+  "email_recipient2": "",
+  "email_recipient3": "",
+  "email_recipient4": "",
+  "email_subject": "recv an email",
+  "email_content": "you recv an email"
+ }
+}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 3. (test) GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=alarm_out&cmd=test_email
+
+// return data example:
+{"status":"ok","data":""}
+
+// 4. (default) GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=alarm_out&cmd=default
+
+// return data example:
+{"enable":1,"attach_pic":1,"email_sender":"ipcam-cgi-scripts@microseven.com","email_sender_name":"tony","email_username":"ipcam-cgi-scripts@microseven.com","email_passwd":"ipcam-cgi-scripts-pwd","email_recipient0":"ipcam-cgi-scripts@microseven.com","email_recipient1":"","email_recipient2":"","email_recipient3":"","email_recipient4":"","email_server":"smtp.microseven.com","email_server_port":465,"email_crypto":"ssl","alarm_dev_name":"","email_subject":"recv an email","email_content":"you recv an email"}

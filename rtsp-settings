@@ -1,0 +1,32 @@
+// enable: 0 - off 1 - on
+// port: RTSP port number
+// auth_enable: Whether to authenticate user 0 - off 1 - on
+
+// rtsp-settings
+// 1. (get)	GET
+// 2. (set)	POST
+// 3. (default)	GET
+
+// 1. (get)	GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=rtsp&cmd=get
+
+// return data example:
+{"enable":1,"port":554,"auth_enable":1}
+
+// 2. (set)	POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod":"rtsp","cmd":"set","param":{"auth_enable":1,"enable":1,"port":554}}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 3. (default)	GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// return data example:
+{"enable":1,"port":554,"auth_enable":1}

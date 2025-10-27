@@ -1,0 +1,75 @@
+// firmware-upgrade
+// 1. (request upgrade) POST
+//    status: ok: success, error: failure
+//    data: upgrade information
+//    DEVICE UPGRADING： device upgrading
+//    FILE INVALID: invalid file
+//    NO MEMORY: device memory insufficient
+//    DATA ERROR: data checksum failed
+// 2. (upgrade status)	GET
+//    status: 
+//    0 - none
+//    1 - Verify firmware
+//    2 - Upgrade start
+//    3 - Download start
+//    4 - Downloading data
+//    5 - Download complete
+//    6 - Flashing (or Burning)
+//    7 - Upgrade complete
+//    download_progress: download progress 0-100
+//    burn_progress: flashing progress 0-100
+// 3. (get ota version)	GET
+// 4. (start ota upgrade) GET
+//    asynchronous upgrade
+
+// 1. (request upgrade) POST
+//    status: ok: success, error: failure
+//    data: upgrade information
+//    DEVICE UPGRADING： device upgrading
+//    FILE INVALID: invalid file
+//    NO MEMORY: device memory insufficient
+//    DATA ERROR: data checksum failed
+// ipcam-cgi-scripts:
+/cgi-bin/upgrade
+
+// POST data example:
+// upgrade package Data (multipart/form-data form upload)
+
+// return data example:
+{"status":"error","data":"FILE INVALID"}
+
+
+// 2. (grade status)	GET
+//    status: 
+//    0 - none
+//    1 - Verify firmware
+//    2 - Upgrade start
+//    3 - Download start
+//    4 - Downloading data
+//    5 - Download complete
+//    6 - Flashing (or Burning)
+//    7 - Upgrade complete
+//    download_progress: download progress 0-100
+//    burn_progress: flashing progress 0-100
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=firmup_info&cmd=get
+
+// return data example:
+{"status":2,"download_progress":0,"burn_progress":0}
+
+// 3. (get ota version)	GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=firmup_info&cmd=ota_firmware_info
+
+// return data example:
+{
+ "ota_version": "v1.0.2"
+}
+
+// 4. (start ota upgrade) GET
+//    asynchronous upgrade, The upgrading status needs to be fetched periodically.
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=firmup_info&cmd=start_ota_upgrade
+
+// return data example:
+{"status":"ok","data":""}

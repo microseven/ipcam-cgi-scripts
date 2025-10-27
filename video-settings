@@ -1,0 +1,52 @@
+// enc_type: encoding type 0 - H.264 1 - H.265
+// width: encoded video width
+// height: encoded video height
+// framerate: frame rate
+// gop: I-frame interval (unit: seconds)
+// rc_mode: rate control mode 0 - CBR 1 - VBR
+// bitrate: bitrate (kbps)
+// smart_enable: currently unsupported
+// quality: video quality 1-6 (Worst-Best)
+
+// video-settings
+// 1. (get)	GET
+// 2. (set)	POST
+// 3. (default)	GET
+// 4. (request an I-frame) GET
+
+// 1. (get)	GET
+// ipcam-cgi-scripts:
+// main stream
+/cgi-bin/web.cgi?mod=video&cmd=get_main&param={"channel":0}
+// sub stream
+/cgi-bin/web.cgi?mod=video&cmd=get_sub&param={"channel":0}
+
+// return data example:
+{"enc_type":1,"width":2560,"height":1440,"framerate":25,"gop":4,"rc_mode":1,"bitrate":3072,"smart_enable":0,"quality":4}
+
+// 2. (set)	POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"enc_type":1,"width":640,"height":480,"framerate":25,"gop":4,"rc_mode":1,"bitrate":512,"smart_enable":0,"quality":5}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 3. (default)	GET
+// ipcam-cgi-scripts:
+// main stream
+/cgi-bin/web.cgi?mod=video&cmd=main_default&param={"channel":0}
+// sub stream
+/cgi-bin/web.cgi?mod=video&cmd=sub_default&param={"channel":0}
+
+// return data example:
+{"enc_type":1,"width":2560,"height":1440,"framerate":20,"gop":4,"rc_mode":1,"bitrate":512,"smart_enable":0,"quality":3}
+
+// 4. (request an I-frame) GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=video&cmd=main_idr&param={"channel":0}
+
+// return data example:
+{"status":"ok","data":""}

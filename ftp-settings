@@ -1,0 +1,45 @@
+// enable   0 - Off 1 - On
+// host: ftp server address
+// port: server port
+// mode: 0 - active mode 1 - passive mode
+// user: username
+// pwd: password
+// path: storage path. optional.
+// use_ftps: use ftp over ssl is known as FTPS (file transfer protocol secure)
+
+// ftp-settings
+// 1. (get)	GET
+// 2. (set) POST
+// 3. (test) GET
+// 4. (default)	GET
+
+// 1. (get)	GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=ftp&cmd=get
+
+// return data example:
+{"enable":1,"host":"192.168.2.222","port":21,"mode":0,"use_ftps": 0,"user":"ftp","pwd":"123456","path":"/test/"}
+
+// 2. (set) POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod":"ftp","cmd":"set","param":{"enable":1,"host":"192.168.2.222","port":21,"mode":0,"use_ftps": 0,"user":"ftp","pwd":"123456","path":"/test/"}}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 3. (test) GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=ftp&cmd=test
+
+// return data example:
+{"status":"ok","data":""}
+
+// 4. (default)	GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=ftp&cmd=default
+
+// return data example:
+{"enable":0,"host":"","port":21,"mode":0,"user":"","pwd":"","path":""}

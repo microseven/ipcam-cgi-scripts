@@ -1,0 +1,18 @@
+// system-management
+// 1. (reset)	GET
+// 2. (reboot)	GET
+
+// 1. (reset)	GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=system&cmd=reset
+
+// return data example:
+{"status":"ok","data":""}
+
+// 2. (reboot) GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=system&cmd=reboot
+
+// return data example:
+{"status":"ok","data":""}
+

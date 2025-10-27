@@ -1,0 +1,44 @@
+// enable: 0 - off 1 - on
+// datetime: time OSD parameters
+// enable: 0 - off 1 - on
+// pos: OSD position 0: Top-left 1: Bottom-left 2: Top-right 3: Bottom-right 4: Hidden
+// date_fmt: date format
+//           0: YYYY-MM-DD 1: MM-DD-YYYY 2: YYYY/MM/DD
+//           3: MM/DD/YYYY 4: DD-MM-YYYY 5: DD/MM/YYYY
+// time_fmt: time system
+//           0: 12-hour system 1: 24-hour system
+// show_week: whether to show the week 0 - Do not show 1 - Show
+// text: OSD text supports up to 5 lines
+// enable: 0 - off 1 - on
+// pos: OSD position 0: top-left 1: Bottom-left 2: top-right 3: bottom-right 4: hidden
+// data: OSD text, UTF8 format
+// no_save: Do not write to flash, parameters are not saved, for frequent refresh requirements
+
+// on-screen-display-settings
+// 1. (get) GET
+// 2. (set) POST
+// 3. (default) GET 
+
+// 1. (get) GET
+// ipcam-cgi-scripts: 
+/cgi-bin/web.cgi?mod=osd&cmd=get&param={"channel":0}
+
+// return data example:
+{"enable":1,"datetime":{"enable":1,"pos":2,"date_fmt":0,"time_fmt":1,"show_week":0},"text":[{"enable":0,"pos":0,"data":"MICROSEVEN"},{"enable":0,"pos":0,"data":""},{"enable":0,"pos":0,"data":""},{"enable":0,"pos":0,"data":""},{"enable":0,"pos":0,"data":""}]}
+
+// 2. (set) POST
+// ipcam-cgi-scripts: 
+/cgi-bin/web.cgi
+
+// POST data example: 
+{"mod":"osd","cmd":"set","param":{"channel":0},"param2":{"enable":1,"datetime":{"enable":1,"show_week":0,"date_fmt":0,"time_fmt":1,"pos":2},"text":[{"enable":1,"data":"MICROSEVEN","pos":0},{"enable":0,"data":"","pos":0},{"enable":0,"data":"","pos":0},{"enable":0,"data":"","pos":0},{"enable":0,"data":"","pos":0}]}}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 3. (default) GET 
+// ipcam-cgi-scripts: 
+/cgi-bin/web.cgi?mod=osd&cmd=default&param={"channel":0}
+
+// return data example:
+{"no_save":0,"enable":1,"datetime":{"enable":1,"pos":2,"date_fmt":0,"time_fmt":1,"show_week":0},"text":[{"enable":0,"pos":0,"data":"MICROSEVEN"},{"enable":0,"pos":0,"data":""},{"enable":0,"pos":0,"data":""},{"enable":0,"pos":0,"data":""},{"enable":0,"pos":0,"data":""}]}

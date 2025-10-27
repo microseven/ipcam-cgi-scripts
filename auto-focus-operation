@@ -1,0 +1,80 @@
+// audo-focus-operation
+// 1. (focus+)	POST
+// 2. (focus-)	POST
+// 3. (zoom+)	POST
+// 4. (zoom-)	POST
+// 5. (initialize) POST
+// 6. (stop) POST
+// 7. (get information) GET
+//    version: af device version
+//    zoom: current zoom level
+
+// 1. (focus+)	POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod":"ptz","cmd":"set","param":{"command":5}}
+
+// return data example:
+{"status":"ok","data":""}
+
+
+// 2. (focus-)	POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod":"ptz","cmd":"set","param":{"command":6}}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 3. (zoom+)	POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod":"ptz","cmd":"set","param":{"command":7}}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 4. (zoom-)	POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod":"ptz","cmd":"set","param":{"command":8}}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 5. (initialize) POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod":"ptz","cmd":"set","param":{"command":9}}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 6. (stop) POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod":"ptz","cmd":"set","param":{"command":10}}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 7. (get information) GET
+//    version: af device version
+//    zoom: current zoom level
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=ptz&cmd=get_af_info
+
+// return data example:
+{"version": "V1.2","zoom": "2.2"}

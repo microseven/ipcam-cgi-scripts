@@ -1,0 +1,36 @@
+// enable: 0 - off 1 - on
+// port: ONVIF port number (must be consistent with the HTTP port number)
+// auth_enable: whether to authenticate the user 
+//  0 - off 
+//  1 - on
+
+
+// onvif-settings
+// 1. (get)	GET
+// 2. (set)	POST
+// 3. (default)	GET
+
+// 1. (get)	GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=onvif&cmd=get
+
+// return data example:
+{"enable":1,"port":80,"auth_enable":1}
+
+// 2. (set)	POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod":"http","cmd":"set","param":{"port":80}}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 3. (default)	GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=onvif&cmd=default
+
+// return data example:
+{"enable":1,"port":80,"auth_enable":1}
+

@@ -1,0 +1,53 @@
+// enable: 0 - off 1 - on
+// sensitivity: sensitivity 0-100
+// duration: alarm persistence duration (unit: seconds)
+// output: alarm linkage action
+// 	ALARM_OUT_SNAPSHOT 	= (0x1 << 1),  // snapshot to SD card
+// 	ALARM_OUT_EMAIL 	= (0x1 << 2),  // alarm email
+// 	ALARM_OUT_BUZZING 	= (0x1 << 3),  // relay (or Buzzer/Siren)
+// 	ALARM_OUT_VOICE 	= (0x1 << 4),  // voice alarm (or Sound alarm)
+// 	ALARM_OUT_WHITELAMP = (0x1 << 5),  // white light linkage
+// 	ALARM_OUT_FTP 		= (0x1 << 7),  // send alarm image via FTP
+// 	ALARM_OUT_RECORD 	= (0x1 << 9),  // save alarm video to SD card
+// 	ALARM_OUT_FTP_RECORD = (0x1 << 10), // send alarm video to FTP server
+// light_work_mode: light linkage work mode 0: Day working 1: Night working 2: All-day working
+// voice_work_mode: voice linkage work mode 0: Day working 1: Night working 2: All-day working
+// alarm_out_work_mode: alarm output linkage work mode 0: Day working 1: Night working 2: All-day working
+// voice_index: currently invalid
+// rect_num: alarm region boxes, supports up to 4 boxes (rect_num=0 means full-screen alarm)
+// rect: Alarm box position
+// 	x: X-coordinate of the top-left corner   0-10000
+// 	y: Y-coordinate of the top-left corner   0-10000
+// 	w: width  0-10000
+// 	h: height  0-10000
+// schedule: alarm time periods (Sunday-Saturday). Supports setting up to 3 armed/monitoring periods per day.
+
+// motion-detection-settings
+// 1. (get)	GET
+// 2. (set)	POST
+// 3. (default) GET
+
+// 1. (get)	GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=md&cmd=get
+
+// return data example:
+{"enable":0,"sensitivity":10,"threshold":90,"duration":20,"output":1,"light_work_mode":1,"voice_work_mode":2,"alarm_out_work_mode":2,"voice_index":0,"rect_num":0,"rect":[{"x":0,"y":0,"w":0,"h":0},{"x":0,"y":0,"w":0,"h":0},{"x":0,"y":0,"w":0,"h":0},{"x":0,"y":0,"w":0,"h":0}],"schedule":[{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}}]}
+
+// 2. (set)	POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example: 
+{"mod":"md","cmd":"set","param":{"enable":0,"output":1,"light_work_mode":1,"voice_work_mode":2,"alarm_out_work_mode":2,"voice_index":0,"duration":20,"sensitivity":10,"rect":[{"x":0,"y":0,"w":0,"h":0},{"x":0,"y":0,"w":0,"h":0},{"x":0,"y":0,"w":0,"h":0},{"x":0,"y":0,"w":0,"h":0}],"rect_num":0,"schedule":[{"enable":1,"begin1":{"hour":0,"minute":0,"second":0},"end1":{"hour":24,"minute":0,"second":0},"begin2":{"hour":0,"minute":0,"second":0},"end2":{"hour":0,"minute":0,"second":0},"begin3":{"hour":0,"minute":0,"second":0},"end3":{"hour":0,"minute":0,"second":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0},"end1":{"hour":24,"minute":0,"second":0},"begin2":{"hour":0,"minute":0,"second":0},"end2":{"hour":0,"minute":0,"second":0},"begin3":{"hour":0,"minute":0,"second":0},"end3":{"hour":0,"minute":0,"second":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0},"end1":{"hour":24,"minute":0,"second":0},"begin2":{"hour":0,"minute":0,"second":0},"end2":{"hour":0,"minute":0,"second":0},"begin3":{"hour":0,"minute":0,"second":0},"end3":{"hour":0,"minute":0,"second":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0},"end1":{"hour":24,"minute":0,"second":0},"begin2":{"hour":0,"minute":0,"second":0},"end2":{"hour":0,"minute":0,"second":0},"begin3":{"hour":0,"minute":0,"second":0},"end3":{"hour":0,"minute":0,"second":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0},"end1":{"hour":24,"minute":0,"second":0},"begin2":{"hour":0,"minute":0,"second":0},"end2":{"hour":0,"minute":0,"second":0},"begin3":{"hour":0,"minute":0,"second":0},"end3":{"hour":0,"minute":0,"second":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0},"end1":{"hour":24,"minute":0,"second":0},"begin2":{"hour":0,"minute":0,"second":0},"end2":{"hour":0,"minute":0,"second":0},"begin3":{"hour":0,"minute":0,"second":0},"end3":{"hour":0,"minute":0,"second":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0},"end1":{"hour":24,"minute":0,"second":0},"begin2":{"hour":0,"minute":0,"second":0},"end2":{"hour":0,"minute":0,"second":0},"begin3":{"hour":0,"minute":0,"second":0},"end3":{"hour":0,"minute":0,"second":0}}]}}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 3. (default) GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=md&cmd=default
+
+// return data example:
+{"enable":0,"sensitivity":10,"threshold":90,"duration":20,"output":1,"light_work_mode":1,"voice_work_mode":2,"alarm_out_work_mode":2,"voice_index":0,"rect_num":0,"rect":[{"x":0,"y":0,"w":0,"h":0},{"x":0,"y":0,"w":0,"h":0},{"x":0,"y":0,"w":0,"h":0},{"x":0,"y":0,"w":0,"h":0}],"schedule":[{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}}]}
+

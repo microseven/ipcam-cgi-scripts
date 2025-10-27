@@ -1,0 +1,38 @@
+// enable: 0 - off 1 - on
+// enc_type: encoding format 3 - G.711A 4 - G.711U
+// sample_rate: sample rate (fixed at 8000)
+// bit_width: bit width (fixed at 1) 0 - 8-bit 1 - 16-bit
+// volume: capture volume (0-100)
+// input_type: input type 0 - Mic 1 - Line in
+// multi_input: whether multiple input types are supported (read-only)
+
+// audio-input-settings
+// 1. (get) GET
+// 2. (set) POST
+// 3. (default) GET
+
+// 1. (get) GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=audio&cmd=get_input
+
+// return data example:
+{"enable":1,"enc_type":3,"sample_rate":8000,"bit_width":1,"volume":100}
+
+// 2. (set) POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod":"audio","cmd":"set_input","param":{"enable":1,"enc_type":3,"sample_rate":8000,"bit_width":1,"input_type":0,"volume":80}}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 3. (default) GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=audio&cmd=input_default
+
+// return data example:
+{"enable":1,"enc_type":3,"sample_rate":8000,"bit_width":1,"volume":80,"input_type":0,"multi_input":0}
+
+

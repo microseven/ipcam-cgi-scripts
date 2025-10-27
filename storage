@@ -1,0 +1,33 @@
+// storage
+// 1. (get status) GET 
+// 2. (format) GET 
+// 3. (format status) GET 
+
+// 1. (get status) GET 
+// status: 0 - storage device not found 1 - storage device found 2 - not initialized 3 - storage card error 4 - formatting 5 - formatting complete 6 - mount successful 7 - disk full
+// total_size: total capacity of storage device, unit MB
+// free_size: free capacity of storage device, unit MB
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=storage&cmd=get_disk_info
+
+// return data example:
+{"status":6,"total_size":29812,"free_size":613}
+
+
+// 2. (format) GET 
+//This operation is asynchronous, and the returned result does not mean that the formatting was successful. The formatting status needs to be fetched periodically.
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=storage&cmd=format
+
+// return data example:
+{"status":"ok","data":""}
+
+// 3. (format status) GET
+// status: formatting status 0 - normal 1 - formatting 2 - formatting failed
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=storage&cmd=get_format_status
+
+// return data example:
+{"status":0}
+
+

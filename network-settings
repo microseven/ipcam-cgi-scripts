@@ -1,0 +1,60 @@
+// iface: network interface name eth0/wlan0
+// addr: IP address
+// netmask: subnet mask
+// gateway: gateway
+// dns: DNS address
+// dns2: secondary DNS address
+// mac: MAC address, read-only
+// dhcp_mode: DHCP mode 
+//  0 - off 
+//  1 - always on 
+//  2 - on for 1 hour 
+//  3 - on for 2 hours 
+//  4 - on for 6 hours 
+//  5 - on for 12 hours 
+//  6 - on for 24 hours 
+//  7 - on for 10 minutes then off
+// auto_dns: auto DNS 
+//  0 - off 
+//  1 - on
+// qwt_enable: global network access switch
+//  0 - off 
+//  1 - on
+// qwt_ip_adaptive_mode: IP adaptive mode 
+//  0 - off 
+//  1 - always on 
+//  2 - on for 1 hour 
+//  3 - on for 2 hours 
+//  4 - on for 6 hours 
+//  5 - on for 12 hours 
+//  6 - on for 24 hours 
+//  7 - on for 10 minutes then off
+
+// network-settings
+// 1. (get)	GET
+// 2. (set) POST
+// 3. (default)	GET
+
+// 1. (get)	GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=net&cmd=get
+
+// return data example:
+{"iface":"eth0","addr":"192.168.8.152","netmask":"255.255.240.0","gateway":"192.168.0.1","dns":"192.168.0.1", "dns2":"","mac":"E8:B7:23:01:7A:2C","dhcp_mode":0,"auto_dns":0,"qwt_enable":0,"qwt_ip_adaptive_mode":0}
+
+// 2. (set) POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod":"net","cmd":"set","param":{"dhcp_mode":0,"qwt_enable":0,"qwt_ip_adaptive_mode":0,"iface":"eth0","addr":"192.168.8.152","netmask":"255.255.240.0","gateway":"192.168.0.1","dns":"192.168.0.1", "dns2":""}}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 3. (default)	GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=net&cmd=default
+
+// return data example:
+{"iface":"eth0","addr":"192.168.7.250","netmask":"255.255.240.0","gateway":"192.168.0.1","dns":"192.168.0.1",dns2:"","mac":"B0:00:00:00:00:1B","dhcp_mode":1,"auto_dns":1,"qwt_enable":0,"qwt_ip_adaptive_mode":0}

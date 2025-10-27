@@ -1,0 +1,9 @@
+// snapshot
+// 1. (get)	GET
+
+// ipcam-cgi-scripts:
+/cgi-bin/snapshot.cgi?channel=0
+
+// return data examples:
+jpeg image data
+

@@ -1,0 +1,121 @@
+// ssid: wifi name
+// pwd: password
+// encrypt: encryption type
+// WIFI_ENCRYPT_OPEN,
+// WIFI_ENCRYPT_WEP,
+// WIFI_ENCRYPT_WPA_PSK,
+// WIFI_ENCRYPT_WPA2_PSK,
+// WIFI_ENCRYPT_WPA_WPA2_PSK,
+// WIFI_ENCRYPT_UNKNOWN
+// quality: wifi strength 0-100
+
+// wi-fi-settings
+// 1. (get configuration)	GET
+// 2. (save settings)	POST
+// 3. (scanning wifi list)	GET
+// 4. (test settings)	POST
+//    This interface returns immediately; you need to determine if the connection was successful by checking the status interface.
+// 5. (test results)	GET
+//     status: 1 - success
+//     status: 2 - failure
+//     status: others - The system will continue testing for a full 60 seconds. The testing status needs to be fetched periodically.
+// 6. (get status)	GET
+//    status: 6/7 means connection successful, other values mean failure
+//    If a successful status is returned within 60s, then it is a success
+// 7. (clear settings)	GET
+
+// 1. (get configuration)	GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=wireless&cmd=get_station
+
+// return data example:
+{
+ "ssid": "microseven",
+ "pwd": "12345678",
+ "encrypt": 0,
+ "quality": 0
+}
+
+
+// 2. (save settings)	POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+// {"mod": "wireless","cmd": "set_station", "param": {"ssid": "microseven","pwd": "12345678"}}
+
+// return data example:
+{
+ "status": "ok",
+ "data": ""
+}
+
+// 3. (scanning wifi list)	GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=wireless&cmd=scan
+
+// POST data example:
+{
+ "num": 2,
+ "wifi_info": [
+  {
+   "ssid": "microseven1",
+   "pwd": "",
+   "encrypt": 3,
+   "quality": 63
+  },
+  {
+   "ssid": "microseven2",
+   "pwd": "",
+   "encrypt": 4,
+   "quality": 57
+  }
+ ]
+}
+
+// 4. (test settings)	POST
+//    This interface returns immediately; you need to determine if the connection was successful by checking the status interface.
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+// {"mod": "wireless","cmd": "test", "param": {"ssid": "microseven","pwd": "12345678"}}
+
+// return data example:
+{
+ "status": "ok",
+ "data": ""
+}
+
+// 5. (test results)	GET
+//    status: 1 - success
+//    status: 2 - failure
+//    status: others - The system will continue testing for a full 60 seconds. The testing status needs to be fetched periodically.
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=wireless&cmd=get_test_status
+
+// return data example:
+{
+ "status": 1
+}
+
+// 6. (get status)	GET
+//    status: 6/7 means connection successful, other values mean failure
+//    If a successful status is returned within 60s, then it is a success
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=wireless&cmd=get_status
+
+// return data example:
+{
+ "status": 7
+}
+
+// 7. (clear settings)	GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=wireless&cmd=clear
+
+// return data example:
+{
+ "status": "ok",
+ "data": ""
+}

@@ -1,0 +1,24 @@
+// res_vi: video input width and height (resolution)
+// res_cnt: number of supported encoding resolutions
+// res_list: list of supported encoding resolutions
+// min_framerate: supported minimum frame rate
+// max_framerate: supported maximum frame rate
+// min_bitrate: supported minimum bitrate (unit kbps)
+// max_bitrate: supported maximum bitrate (unit kbps)
+// min_gop: minimum I-frame interval (unit s)
+// max_gop: maximum I-frame interval (unit s)
+// venc_set: supported encoding types 1-h264 2-h265 3-h264+h265
+
+// stream-settings
+// 1. (get) GET
+
+// 1. (get) GET
+// ipcam-cgi-scripts:
+// main stream
+ /cgi-bin/web.cgi?mod=stream_ability&cmd=get_main&param={"channel":0}
+ // sub stream
+ /cgi-bin/web.cgi?mod=stream_ability&cmd=get_sub&param={"channel":0}
+
+// return data example:
+{"res_vi":{"width":1920,"height":1080},"res_list":[{"width":2560,"height":1440},{"width":2304,"height":1296},{"width":1920,"height":1080},{"width":1280,"height":720},{"width":1280,"height":720},{"width":0,"height":0},{"width":0,"height":0},{"width":0,"height":0}],"res_cnt":4,"min_framerate":1,"max_framerate":30,"min_bitrate":128,"max_bitrate":8192,"min_gop":1,"max_gop":30,"venc_set":3}
+

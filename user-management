@@ -1,0 +1,62 @@
+// name: username
+// pwd: password requirement:
+//    8–16 characters, a combination of three or more of the following character types is required:
+//      digits (numbers 0–9)
+//      lowercase letters (a–z)
+//      uppercase letters (A–Z)
+//      special characters （!\"#$%<br>&()*+,-./:;<=>?@[\]^_`{|}~)
+// type: feature unavailable 
+// power: feature unavailable
+
+// user-management
+// 1. (query) GET
+// 2. (add) POST
+// 3. (modify) POST
+// 4. (delete) POST
+// 5. (query information) GET 
+
+// 1. (query) GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=account&cmd=list
+
+// return data example: 
+[{"name":"admin","pwd":"password","type":0,"power":0}]
+
+// 2. (add) POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example: 
+{"mod":"account","cmd":"add","param":{"name":"admin2","pwd":"password"}}
+
+// return data example: 
+{"status":"ok","data":""}
+
+// 3. (modify) POST
+// only the password for a teammate's username can be modified.
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example: 
+{"mod":"account","cmd":"modify","param":{"name":"admin","pwd":"password2"}}
+
+// return data example: 
+{"status":"ok","data":""}
+
+
+// 4. (delete) POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example: 
+{"mod":"account","cmd":"delete","param":{"name":"admin2"}}
+
+// return data example: 
+{"status":"ok","data":""}
+
+// 5. (query information) GET 
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=account&cmd=get_info
+
+// return data example: 
+{"name":"admin","pwd":"password","type":0,"power":0}

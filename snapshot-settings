@@ -1,0 +1,41 @@
+// width: image width
+// height: image height
+// quality: image quality [1, 3] = [low, medium, high]
+
+// snapshot-settings
+// 1. (get) GET
+// 2. (set) POST
+// 3. (capability level) GET
+// 4. (default)	GET
+
+// 1. (get) GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=snapshot_res&cmd=get&param={"channel":0}
+
+// return data example:
+{"width":1280,"height":720,"quality":2}
+
+// 2. (set) POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod": "snapshot_res","cmd": "set", "param": {"channel": 0},"param2": {"width": 800,"height": 448,"quality": 2}}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 3. (capability level) GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=snapshot_res&cmd=ability&param={"channel":0}
+
+// return data example:
+{"res_list":[{"width":3840,"height":2160},{"width":2880,"height":1616},{"width":2560,"height":1440},{"width":2304,"height":1296},{"width":1920,"height":1080},{"width":1280,"height":720},{"width":704,"height":576},{"width":800,"height":448},{"width":640,"height":480},{"width":640,"height":360},{"width":352,"height":288},{"width":0,"height":0}],"res_cnt":11,"chn_num":1,"stream_num_per_chn":2}
+
+// 4. (default)	GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=snapshot_res&cmd=ability&param={"channel":0}
+
+// return data example:
+{"width":1280,"height":720,"quality":2}
+

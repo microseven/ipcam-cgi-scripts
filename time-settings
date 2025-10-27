@@ -1,0 +1,69 @@
+// timezone: timezone
+// 0：(UTC-12:00) International Date Line West     1：(UTC-11:00) Midway Island,Samoa
+// 2：(UTC-10:00) Hawaii                           3：(UTC-09:00) Alaska   
+// 4：(UTC-08:00) Pacific Time (US & Canada)     5：(UTC-07:00) Mountain Time (US & Canada) 
+// 6：(UTC-06:00) Central Time (US & Canada)     7：(UTC-05:00) Eastern Time(US & Canada)
+// 8：(UTC-04:30) Caracas                          9：(UTC-04:00) Atlantic Time (Canada)
+// 10：(UTC-03:30) Newfoundland                    11：(UTC-03:00) Georgetown, Brasilia 
+// 12：(UTC-02:00) Mid-Atlantic                    13：(UTC-01:00) Cape Verde Islands, Azores  
+// 14：(UTC+00:00) Dublin, Edinburgh, London       15：(UTC+01:00) Amsterdam, Berlin, Rome, Paris 
+// 16：(UTC+02:00) Athens, Jerusalem, Istanbul     17：(UTC+03:00) Baghdad, Kuwait, Moscow
+// 18：(UTC+03:30) Tehran                          19：(UTC+04:00) Caucasus Standard Time
+// 20：(UTC+04:30) Kabul                           21：(UTC+05:00) Islamabad, Karachi, Tashkent
+// 22：(UTC+05:30) Madras, Bombay, New Delhi       23：(UTC+05:45) Kathmandu 
+// 24：(UTC+06:00) Almaty, Novosibirsk, Dhaka      25：(UTC+06:30) Yangon
+// 26：(UTC+07:00) Bangkok, Hanoi, Jakarta         27：(UTC+08:00) Beijing, Urumqi, Singapore 
+// 28：(UTC+09:00) Seoul, Tokyo, Osaka, Sapporo    29：(UTC+09:30) Adelaide, Darwin 
+// 30：(UTC+10:00) Melbourne, Sydney, Canberra     31：(UTC+11:00) Magadan, Solomon Islands
+// 32：(UTC+12:00) Auckland, Wellington, Fiji      33：(UTC+13:00) Nuku'alofa
+//
+// ntp automatic time calibration parameters
+// enable: 0 - off 1 - on
+// server: NTP server
+// port: NTP port number
+// interval: NTP calibration interval, unit: seconds
+//
+// dst: Daylight Saving Time period (DST)
+// enable: 0 - off 1 - on
+// mode: 0 - By Week 1 - By Date
+// start_month: start month [1, 12]
+// start_week: start week [1, 5]. 1~4 represents the 1st week~4th week, 5 represents the last week (only valid when mode is 0)
+// start_day: when mode is 0: [0, 6] represents Sunday~Saturday; when mode is 1: [1, 31] represents the date
+// start_time: start time point
+// end_month: end month [1, 12]
+// end_week: end week [1, 5]. 1~4 represents the 1st week~4th week, 5 represents the last week (only valid when mode is 0)
+// end_day: when mode is 0: [0, 6] represents Sunday~Saturday; when mode is 1: [1, 31] represents the date
+// end_time: end time point
+// offset_time: offset time (unit: minutes)
+//
+// time_sec: current UTC (unit: seconds). only if you set the time_sec value when ntp enable is selected, the time_sec value will be ignored.
+// no_save: do not write to flash, parameters are not saved, for frequent refresh requirements
+
+// time-settings
+// 1. (get) GET
+// 2. (set) POST
+// 3. (default) GET 
+
+// 1. (get) GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=systime&cmd=get
+
+// return data example:
+{"timezone":4,"ntp":{"enable":0,"server":"time.nist.gov","port":123,"interval":43200},"dst":{"enable":0,"mode":0,"start_month":3,"start_week":2,"start_day":0,"start_time":{"hour":2,"minute":0,"second":0,"reserve":0},"end_month":11,"end_week":1,"end_day":0,"end_time":{"hour":2,"minute":0,"second":0,"reserve":0},"offset_time":60},"time_sec":1727235806}
+
+// 2. (set) POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod":"systime","cmd":"set","param":{"timezone":4,"time_sec":1723607313,"ntp":{"enable":0,"server":"time.nist.gov","port":123,"interval":43200},"dst":{"enable":1,"mode":1,"offset_time":60,"start_month":8,"end_month":8,"start_week":2,"end_week":1,"start_day":3,"end_day":3,"start_time":{"hour":14,"minute":0,"second":0},"end_time":{"hour":15,"minute":0,"second":0}}}}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 3. (default) GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=systime&cmd=default
+
+// return data example:
+{"no_save":0,"timezone":4,"ntp":{"enable":1,"server":"time.nist.gov","port":123,"interval":43200},"dst":{"enable":0,"mode":0,"start_month":3,"start_week":2,"start_day":0,"start_time":{"hour":2,"minute":0,"second":0,"reserve":0},"end_month":11,"end_week":1,"end_day":0,"end_time":{"hour":2,"minute":0,"second":0,"reserve":0},"offset_time":60},"time_sec":1750732344}

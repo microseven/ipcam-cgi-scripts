@@ -1,0 +1,61 @@
+// devtype: device model 
+// uboot_version: U-Boot version (read-only) 
+// kernel_version: kernel version (read-only)
+// version: Software version (read-only) 
+// devno: device number (read-only) 
+// nickname: nickname (setting is currently unsupported)
+// serial_num: device serial number (read-only) 
+// language: language 0-simplified chinese 1-english 2-korean 3-traditional chinese 4-russian 5-16-custom
+// timezone: timezone
+// 0: (UTC-12:00) International Date Line West       1: (UTC-11:00) Midway Island, Samoa
+// 2: (UTC-10:00) Hawaii                             3: (UTC-09:00) Alaska
+// 4: (UTC-08:00) Pacific Time (US & Canada)         5: (UTC-07:00) Mountain Time (US & Canada)
+// 6: (UTC-06:00) Central Time (US & Canada)         7: (UTC-05:00) Eastern Time (US & Canada)
+// 8: (UTC-04:30) Caracas                            9: (UTC-04:00) Atlantic Time (Canada)
+// 10: (UTC-03:30) Newfoundland                      11: (UTC-03:00) Georgetown, Brasilia
+// 12: (UTC-02:00) Mid-Atlantic                      13: (UTC-01:00) Cape Verde Islands, Azores
+// 14: (UTC+00:00) Dublin, Edinburgh, London         15: (UTC+01:00) Amsterdam, Berlin, Rome, Paris
+// 16: (UTC+02:00) Athens, Jerusalem, Istanbul       17: (UTC+03:00) Baghdad, Kuwait, Moscow
+// 18: (UTC+03:30) Tehran                            19: (UTC+04:00) Caucasus Standard Time
+// 20: (UTC+04:30) Kabul                             21: (UTC+05:00) Islamabad, Karachi, Tashkent
+// 22: (UTC+05:30) Madras, Bombay, New Delhi         23: (UTC+05:45) Kathmandu
+// 24: (UTC+06:00) Almaty, Novosibirsk, Dhaka        25: (UTC+06:30) Yangon
+// 26: (UTC+07:00) Bangkok, Hanoi, Jakarta           27: (UTC+08:00) Beijing, Urumqi, Singapore
+// 28: (UTC+09:00) Seoul, Tokyo, Osaka, Sapporo      29: (UTC+09:30) Adelaide, Darwin
+// 30: (UTC+10:00) Melbourne, Sydney, Canberra       31: (UTC+11:00) Magadan, Solomon Islands
+// 32: (UTC+12:00) Auckland, Wellington, Fiji        33: (UTC+13:00) Nuku'alofa
+// home_ipc: whether it is consumer type 0 - no 1 - yes (read-only)
+// system_function: system supported functions (read-only)
+// voice: prompt tone language 0-ring tone 1-chinese 2-english 3-custom
+// chn_num: video channel count (read-only)
+// stream_num_per_chn: number of streams per video channel (read-only)
+
+
+// device-information
+// 1. (get) GET
+// 2. (set) POST
+// 3. (default) GET
+
+// 1. (get) GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=device&cmd=get
+
+// return data example: 
+{"devtype":"MYM74K-HTL","uboot_version":"uboot-2016-14","kernel_version":"linux-4.9-15","version":"V1.14.62-20240924","devno":"XXXXXXXXXXXXXXXXXX","nickname":"MICROSEVEN","serial_num":"XXXXXXXXXXXXXXXX","language":1,"timezone":4,"home_ipc":0,"system_function":175051,"voice":0,"chn_num":1,"stream_num_per_chn":2}
+
+// 2. (set) POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod":"device","cmd":"set","param":{"devtype":"MYM74K-HTL","language":1,"voice":0}}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 3. (default) GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=device&cmd=default
+
+// return data example:
+{"cpu_type":"fh8852v201","devtype":"MYM74K-HTL","uboot_version":"uboot-2016-16","kernel_version":"linux-4.9-15","version":"V1.16.27-20250624","devno":"","nickname":"MICROSEVEN","serial_num":"","language":1,"timezone":27,"home_ipc":1,"system_function":175051,"voice":0,"chn_num":1,"stream_num_per_chn":2}

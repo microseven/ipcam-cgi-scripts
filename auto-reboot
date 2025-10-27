@@ -1,0 +1,24 @@
+// enable switch 0-off  1-on
+// wday   0~6 represents sunday~saturday, 7 represents every day.
+// time; // restart time, accurate to the minute
+
+// auto-reboot
+// 1. (get) GET
+// 2. (set) POST
+
+// 1. (get) GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=auto_reboot&cmd=get
+
+// return data example:
+{"enable":1,"wday":0,"time":{"hour":0,"minute":0,"second":0,"reserve":0}}
+
+// 2. (set) POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod":"auto_reboot","cmd":"set","param":{"enable":1,"wday":0,"time":{"hour":0,"minute":0,"second":0}}}
+
+// return data example:
+{"status":"ok","data":""}

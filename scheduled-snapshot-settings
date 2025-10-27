@@ -1,0 +1,286 @@
+// enable switch  0 - off 1 - on
+// output: snapshot linkage/trigger
+//       (0x1 << 1)  save snapshot image to SD card
+//       (0x1 << 2)  send snapshot image via email
+//       (0x1 << 7)  send alarm image via FTP
+// ftp_interval  FTP snapshot interval   unit: seconds
+// email_interval  email snapshot interval   unit: seconds   <- Corrected key based on context
+// sdcard_interval  SD card snapshot interval   unit: seconds   <- Corrected key based on context
+// schedule: alarm time periods (Sunday-Saturday). Supports setting up to 3 time periods per day.
+// file_mode: file storage method  0 - Overwrite mode 1 - DateTime-suffix filename
+// filename: overwrite mode filename
+
+// scheduled-snapshot-settings
+// 1. (get)	GET
+// 2. (set) POST
+// 3. (default)	GET
+
+
+// 1. (get)	GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=timing_snapshot&cmd=get
+
+// return data example:
+{"enable":1,"ftp_interval":30,"email_interval":30,"sdcard_interval":30,"output":134,"schedule":[{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}}],"file_mode":1,"filename":""}
+
+// 2. (set) POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{
+  "mod": "timing_snapshot",
+  "cmd": "set",
+  "param": {
+    "enable": 1,
+    "output": 134,
+    "ftp_interval": 30,
+    "email_interval": 30,
+    "sdcard_interval": 30,
+    "file_mode": 1,
+    "filename": "",
+    "schedule": [
+      {
+        "enable": 1,
+        "begin1": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "end1": {
+          "hour": 24,
+          "minute": 0,
+          "second": 0
+        },
+        "begin2": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "end2": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "begin3": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "end3": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        }
+      },
+      {
+        "enable": 1,
+        "begin1": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "end1": {
+          "hour": 24,
+          "minute": 0,
+          "second": 0
+        },
+        "begin2": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "end2": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "begin3": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "end3": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        }
+      },
+      {
+        "enable": 1,
+        "begin1": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "end1": {
+          "hour": 24,
+          "minute": 0,
+          "second": 0
+        },
+        "begin2": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "end2": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "begin3": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "end3": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        }
+      },
+      {
+        "enable": 1,
+        "begin1": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "end1": {
+          "hour": 24,
+          "minute": 0,
+          "second": 0
+        },
+        "begin2": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "end2": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "begin3": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "end3": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        }
+      },
+      {
+        "enable": 1,
+        "begin1": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "end1": {
+          "hour": 24,
+          "minute": 0,
+          "second": 0
+        },
+        "begin2": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "end2": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "begin3": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "end3": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        }
+      },
+      {
+        "enable": 1,
+        "begin1": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "end1": {
+          "hour": 24,
+          "minute": 0,
+          "second": 0
+        },
+        "begin2": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "end2": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "begin3": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "end3": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        }
+      },
+      {
+        "enable": 1,
+        "begin1": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "end1": {
+          "hour": 24,
+          "minute": 0,
+          "second": 0
+        },
+        "begin2": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "end2": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "begin3": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        },
+        "end3": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0
+        }
+      }
+    ]
+  }
+}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 3. (default)	GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=timing_snapshot&cmd=default
+
+// return data example:
+{"enable":1,"ftp_interval":30,"email_interval":30,"sdcard_interval":30,"output":134,"schedule":[{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}},{"enable":1,"begin1":{"hour":0,"minute":0,"second":0,"reserve":0},"end1":{"hour":24,"minute":0,"second":0,"reserve":0},"begin2":{"hour":0,"minute":0,"second":0,"reserve":0},"end2":{"hour":0,"minute":0,"second":0,"reserve":0},"begin3":{"hour":0,"minute":0,"second":0,"reserve":0},"end3":{"hour":0,"minute":0,"second":0,"reserve":0}}],"file_mode":1,"filename":""}

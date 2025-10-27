@@ -1,0 +1,30 @@
+// port: HTTP port number (web service and ONVIF port number; if you need to modify the ONVIF port, change it here)
+
+// http-settings
+// 1. (get)	GET
+// 2. (set)	POST
+// 3. (default)	GET
+
+// 1. (get)	GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=http&cmd=get
+
+// return data example:
+{"port":80}
+
+// 2. (set)	POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod":"http","cmd":"set","param":{"port":80}}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 3. (default)	GET
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=http&cmd=default
+
+// return data example:
+{"port":80}

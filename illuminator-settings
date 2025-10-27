@@ -1,0 +1,32 @@
+// day_night_switch: 0 - photosensitive detection (hardware) 1 - ambient light detection (software)
+// lamp_switch: fill light brightness adjustment mode 0 - auto 1 - manual
+// lamp_value: fill light brightness (the lamp_value is maximun brightness when the [0 - auto] is selected.)
+
+// illuminator-settings
+// 1. (get) GET
+// 2. (set) POST
+// 3. (default) GET
+
+// 1. (get) GET
+// ipcam-cgi-script:
+/cgi-bin/web.cgi?mod=lamp_panel&cmd=get&param={"channel":0}
+
+// return data example:
+{"lamp_mode":2,"day_night_switch":1,"lamp_switch":0,"lamp_value":0}
+
+// 2. (set) POST
+// ipcam-cgi-script:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod":"lamp_panel","cmd":"set","param":{"channel":0},"param2":{"lamp_mode":2,"day_night_switch":1}}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 3. (default) GET
+// ipcam-cgi-script:
+/cgi-bin/web.cgi?mod=lamp_panel&cmd=default&param={"channel":0}
+
+// return data example:
+{"lamp_mode":2,"day_night_switch":1,"lamp_switch":0,"lamp_value":0}

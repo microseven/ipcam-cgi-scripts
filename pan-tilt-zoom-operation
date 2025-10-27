@@ -1,0 +1,105 @@
+// pan-tilt-zoom-operation
+// 1. (up) POST
+// 2. (down) POST
+// 3. (left) POST
+// 4. (right)	POST
+// 5. (stop) POST
+// 6. (query) preset point	GET
+//    preset_id: unique identifier for the operation preset point, cannot be repeated.     
+// 7. (add) preset point	POST
+//    preset_id: unique identifier for the operation preset point, cannot be repeated.  
+// 8. (delete) preset point	POST
+//    preset_id: unique identifier for the operation preset point, cannot be repeated.  
+// 9. (call) preset point	POST
+//    preset_id: unique identifier for the operation preset point, cannot be repeated.  
+
+// 1. (up) POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod":"ptz","cmd":"set","param":{"command":1}}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 2. (down) POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod":"ptz","cmd":"set","param":{"command":2}}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 3. (left) POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod":"ptz","cmd":"set","param":{"command":3}}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 4. (right)	POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod":"ptz","cmd":"set","param":{"command":4}}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 5. (stop) POST
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod":"ptz","cmd":"set","param":{"command":0}}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 6. (query) preset point	GET
+// preset_id: unique identifier for the operation preset point, cannot be repeated.
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=ptz&cmd=get
+
+// return data example:
+{"speed":1,"preset_id":[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}
+
+// 7. (add) preset point	POST
+// preset_id: unique identifier for the operation preset point, cannot be repeated.
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod":"ptz","cmd":"set","param":{"command":11,"speed":1,"preset_id":[1]}}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 8. (delete) preset point	POST
+// preset_id: unique identifier for the operation preset point, cannot be repeated.
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod":"ptz","cmd":"set","param":{"command":12,"speed":1,"preset_id":[1]}}
+
+// return data example:
+{"status":"ok","data":""}
+
+// 9. (call) preset point	POST
+// preset_id: unique identifier for the operation preset point, cannot be repeated.
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+{"mod":"ptz","cmd":"set","param":{"command":13,"speed":1,"preset_id":[1]}}
+
+// return data example:
+{"status":"ok","data":""}

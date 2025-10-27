@@ -1,0 +1,126 @@
+// brightness: image brightness 0-255 
+// saturation: saturation 0-255 
+// contrast: contrast 0-255 
+// sharpness: sharpness 0-255
+// exposure: exposure mode
+// 0: auto exposure
+// 1: 1/25 (50HZ) 1/30 (60HZ)
+// 2: 1/50 (50HZ) 1/60 (60HZ)
+// 3: 1/100 (50HZ) 1/120 (60HZ)
+// 4: 1/250 (50HZ) 1/300 (60HZ)
+// 5: 1/500 (50HZ) 1/600 (60HZ)
+// 6: 1/1000 (50HZ) 1/1200 (60HZ)
+// 7: 1/1250 (50HZ) 1/1500 (60HZ)
+// 8: 1/2000 (50HZ) 1/2400 (60HZ)
+// 9: 1/3000 (50HZ) 1/3600 (60HZ)
+// 10: 1/5000 (50HZ) 1/6000 (60HZ)
+// 11: 1/6000 (50HZ) 1/7200 (60HZ)
+// 12: 1/8000 (50HZ) 1/9600 (60HZ)
+// 13: 1/10000 (50HZ) 1/12000 (60HZ)
+// day_night_mode: 0 - auto 1 - always color 2 - always black/white 3 - timed color
+// day_begin: timed color start time 
+// day_end: timed color end time
+// mirror: 0 - mirror off 1 - Mirror on 
+// flip: 0 - flip off 1 - flip on
+// wdr_enable: Wide Dynamic Range enable 0 - off 1 - on
+// ircut_delay: day/night conversion delay, unit: seconds
+// anti_flicker_enable: anti-flicker enable 0 - off 1 - on
+// anti_flicker_mode: anti-flicker mode 0 - weak anti-flicker 1 - strong anti-flicker
+// backlight_mode: backlight mode 0 - off 1backlight compensation highlight suppression
+// tv_standard: video standard 0 - 50Hz 1 - 60Hz
+// drc_strenght: Digital Wide Dynamic Range (DRC) 0-255
+// nr_enable: whether to enable noise reduction (NR) 0 - Off 1 - On
+// led_brightness_mode: fill light mode 0 - auto 1 - manual
+// led_brightness: currently invalid
+// max_led_brightness: fill light brightness. maximum brightness when fill light mode is auto.
+// ldc_enable: Lens Distortion Correction (LDC) 0 - off 1 - on
+// rotation: image rotation 0 - Off 1 - On
+// day_to_night_brightness: color to B/W brightness level 0 - Low 1 - Medium 2 - High
+// night_to_day_brightness: B/W to color brightness level 0 - Low 1 - Medium 2 - High
+// scene_mode: // Set scene mode: 0: Indoor (standard) / 1: outdoor
+// agc_type: // Automatic Gain Control (AGC) 0 1 2 4 8 16 32 64 128 256 512. 0 is auto, other values are multiples.
+// awb_type: // white balance (AWB) 0 - auto white balance 1 - manual white balance 2 - lock White Balance 3 - White Light Lamp 4 - Warm Light Lamp 5 - Fluorescent Lamp 6 - Natural Light
+// mwb_red: Manual White Balance Red 0-255
+// mwb_blue: Manual White Balance Blue 0-255
+// mwb_green: Manual White Balance Green 0-255
+
+// image-settings
+// 1. (get) GET
+// 2. (set) POST
+// 3. (default) GET 
+
+// 1. (get) GET
+// channel: Video input channel number. Fixed at 0 for single-input devices.
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=image&cmd=get&param={"channel":0}
+
+// return data example:
+{"brightness":128,"saturation":128,"contrast":128,"sharpness":128,"exposure":0,"day_night_mode":0,"day_begin":{"hour":0,"minute":0,"second":0,"reserve":0},"day_end":{"hour":0,"minute":0,"second":0,"reserve":0},"mirror":0,"flip":0,"wdr_enable":0,"ircut_delay":0,"anti_flicker_enable":0,"anti_flicker_mode":0,"backlight_mode":0,"tv_standard":0,"drc_strenght":128,"nr_enable":1,"led_brightness":40,"max_led_brightness":85,"led_brightness_mode":1,"day_night_lux":3,"face_mode":0,"smart_face_mode":0,"night_fps_select":0,"ldc_enable":0,"rotation":0,"day_to_night_brightness":1,"night_to_day_brightness":1,"scene_mode":0,"agc_type":0,"awb_type":1,"mwb_red":128,"mwb_blue":128,"mwb_green":0}
+
+// 2. (set) POST
+// channel: video input channel number. fixed at 0 for single-input devices.
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi
+
+// POST data example:
+"{
+  ""mod"": ""image"",
+  ""cmd"": ""set"",
+  ""param"": {
+    ""channel"": 0
+  },
+  ""param2"": {
+    ""mirror"": 0,
+    ""flip"": 0,
+    ""nr_enable"": 1,
+    ""wdr_enable"": 0,
+    ""backlight_mode"": 0,
+    ""anti_flicker_enable"": 0,
+    ""anti_flicker_mode"": 0,
+    ""ldc_enable"": 0,
+    ""face_mode"": 0,
+    ""smart_face_mode"": 0,
+    ""brightness"": 128,
+    ""saturation"": 128,
+    ""sharpness"": 128,
+    ""contrast"": 128,
+    ""drc_strenght"": 128,
+    ""max_led_brightness"": 85,
+    ""led_brightness_mode"": 1,
+    ""scene_mode"": 0,
+    ""agc_type"": 0,
+    ""awb_type"": 1,
+    ""mwb_red"": 128,
+    ""mwb_blue"": 128,
+    ""day_begin"": {
+      ""hour"": 0,
+      ""minute"": 0,
+      ""second"": 0
+    },
+    ""day_end"": {
+      ""hour"": 0,
+      ""minute"": 0,
+      ""second"": 0
+    },
+    ""day_night_mode"": 0,
+    ""ircut_delay"": 0,
+    ""tv_standard"": 0,
+    ""exposure"": 0,
+    ""day_night_lux"": 3,
+    ""night_fps_select"": 0,
+    ""rotation"": 0,
+    ""day_to_night_brightness"": 1,
+    ""night_to_day_brightness"": 1
+  }
+}"
+
+// return data example:
+{"status":"ok","data":""}
+
+// 3. (default) GET 
+// ipcam-cgi-scripts:
+/cgi-bin/web.cgi?mod=image&cmd=default&param={"channel":0}
+
+// return data example:
+{"brightness":128,"saturation":128,"contrast":128,"sharpness":128,"exposure":0,"day_night_mode":0,"day_begin":{"hour":0,"minute":0,"second":0,"reserve":0},"day_end":{"hour":0,"minute":0,"second":0,"reserve":0},"mirror":0,"flip":0,"wdr_enable":0,"ircut_delay":0,"anti_flicker_enable":0,"anti_flicker_mode":0,"backlight_mode":0,"tv_standard":0,"drc_strenght":128,"nr_enable":1,"led_brightness":40,"max_led_brightness":85,"led_brightness_mode":1,"day_night_lux":3,"face_mode":0,"smart_face_mode":0,"night_fps_select":0,"ldc_enable":0,"rotation":0,"day_to_night_brightness":1,"night_to_day_brightness":1,"scene_mode":0,"agc_type":0,"awb_type":1,"mwb_red":128,"mwb_blue":128,"mwb_green":0}
+
