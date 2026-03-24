@@ -22,7 +22,7 @@
 /cgi-bin/web.cgi
 
 // POST data example:
-{"mod":"http","cmd":"set","param":{"port":80}}
+{"mod":"onvif","cmd":"set","param":{"enable":1,"auth_enable":1,"port":80}}
 
 // return data example:
 {"status":"ok","data":""}
